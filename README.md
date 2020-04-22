@@ -56,6 +56,7 @@ provided; there would be very little point in replicating all these capabilities
 The system is connected as follows: The GFP is connected to power (18 V DC, 2-3 A), the railroad track,
 and to the BeagleBone Blue via the CAN connector.
 
+* [Configure BeagleBone for CAN bus](../blob/master/CAN/README.md)
 
 ## Random notes
 ### PRU Processing
