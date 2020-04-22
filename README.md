@@ -13,9 +13,9 @@ affordable option. Also, there is a lot of unrealized potential for STEM educati
 trains, particularly if you combine it with Open Source, modern embedded computing and 
 building electronic hardware. This project tries to explore some of these areas.
 
-### The Märklin 60116 Digital Connector Box
+### Märklin 60116 Digital Connector Box
 
-![image of Marklin 60116](https://static.maerklin.de/damcontent/cf/42/cf421ea551d10e96de7035fcddb03f201524290467.jpg)
+![image of Marklin 60116](https://static.maerklin.de/damcontent/17/17/1717b7e0d1a0ffddbdaf73d730107b291524290466.jpg)
 
 The [Märklin 60116 Digital Connector Box](https://www.maerklin.de/en/products/details/article/60116/) 
 provides an attractive and cost-effective interface to a model railroad. It is designed 
@@ -49,8 +49,8 @@ a lot of potential for other related experiments. But in principle, all of this 
 to other (most likely cheaper) members of the BeagleBone family.
 
 While the BeagleBone Blue would be capable enough to also include the GFP functionality,
-I will make no attempt to do so. The unit is sold at a fair price for the functionality
-available, and there is very little point in replicating all these capabilities. 
+I will make no attempt to do so. The Märklin 60116 is sold at a fair price for the functionality
+provided; there would be very little point in replicating all these capabilities. 
 
 ### System Overview
 The system is connected as follows: The GFP is connected to power (18 V DC, 2-3 A), the railroad track,
