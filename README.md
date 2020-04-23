@@ -13,6 +13,12 @@ affordable option. Also, there is a lot of unrealized potential for STEM educati
 trains, particularly if you combine it with Open Source, modern embedded computing and 
 building electronic hardware. This project tries to explore some of these areas.
 
+### Previous work
+
+From what I can determine, the original idea of building a controller out of a Märklin 60116 Digital Connector Box
+and some external software came from 
+
+
 ### Märklin 60116 Digital Connector Box
 
 ![image of Marklin 60116](https://static.maerklin.de/damcontent/17/17/1717b7e0d1a0ffddbdaf73d730107b291524290466.jpg)
@@ -20,7 +26,7 @@ building electronic hardware. This project tries to explore some of these areas.
 The [Märklin 60116 Digital Connector Box](https://www.maerklin.de/en/products/details/article/60116/) 
 provides an attractive and cost-effective interface to a model railroad. It is designed 
 to be used in conjunction with a [Märklin 60657 Mobile Station (also known as "MS2")](https://www.maerklin.de/en/products/details/article/60657).
-The MS2 is a handheld controller that talks to the 60116 over a CAN link, using a format that
+The MS2 is a handheld controller that talks to the 60116 over a [CAN bus](https://en.wikipedia.org/wiki/CAN_bus) link, using a format that
 [has been published by Märklin (in German)](https://www.maerklin.de/fileadmin/media/service/software-updates/cs2CAN-Protokoll-2_0.pdf).
 The 60116 works as a track protocol processor. The protocol spec calls this a Gleisformat Prozessor,
 and I will use GFP as an acronym in this document. The GFP translates CAN bus messages from the
@@ -37,8 +43,16 @@ some liberties and solder directly to the PCB.
 
 The [BeagleBone Blue](http://beagleboard.org/blue) is a member of the BeagleBone family of single board 
 computers, and it is focused on robotics. It basically consists of a BeagleBone with an integrated
-[Robotics Cape](https://beagleboard.org/capes#robotics). Software support for the rebotics-related
+[Robotics Cape](https://beagleboard.org/capes#robotics). 
+The hardware design is [is open-sourced on Github.](https://github.com/beagleboard/beaglebone-blue)
+Software support for the rebotics-related
 components is available via [librobotcontrol](https://github.com/StrawsonDesign/librobotcontrol).
+Just like the BeagleBone Black, the board is based around the Octavo OSD3358-512M-BAS, 
+which is a System-in-Package (SiP), which combines a 
+Texas Instruments [Sitara ARM® Cortex®-A8 AM3358 Processor](http://www.ti.com/processors/sitara-arm/am335x-cortex-a8/overview.html),
+512MB DDR3L RAM, 
+a [TPS65217C Power Management IC (PMIC)](https://www.ti.com/product/TPS65217) 
+and a [TL5209 Voltage Regulator](https://www.ti.com/product/TL5209).
 
 Compared to other members of the BeagleBoard family, the BeagleBone Blue is unfortunately somewhat 
 underdocumented, particularly in its differences in pinout and connectivity. The reason I am 
@@ -52,14 +66,21 @@ While the BeagleBone Blue would be capable enough to also include the GFP functi
 I will make no attempt to do so. The Märklin 60116 is sold at a fair price for the functionality
 provided; there would be very little point in replicating all these capabilities. 
 
-### System Overview
+## System Overview
 The system is connected as follows: The GFP is connected to power (18 V DC, 2-3 A), the railroad track,
 and to the BeagleBone Blue via the CAN connector.
 
+## Implementation steps
+
 * [Configure BeagleBone for CAN bus](CAN/README.md)
 
+## Resources
+* [BeagleBone Black System Reference manual](https://github.com/beagleboard/beaglebone-black/wiki/System-Reference-Manual0). 
+Please note that this is for the BeagleBone _Black, not Blue_, so there are important differences.
+Regrettably, [there is no System Reference Manual for the BeagleBone Blue](https://github.com/beagleboard/beaglebone-blue/wiki/System-Reference-Manual).
+
 ## Random notes
-### PRU Processing
+### PRU Programming
 
 * [C programming overview](http://www.righto.com/2016/09/how-to-run-c-programs-on-beaglebones.html)
 * Binaries are loaded from /lib/firmware
@@ -71,5 +92,4 @@ and to the BeagleBone Blue via the CAN connector.
 
 ### Beaglebone Blue References
 * [U-Boot and device tree overlays](https://elinux.org/Beagleboard:BeagleBoneBlack_Debian#U-Boot_Overlays)
-* [Beaglebone Blue repository](https://github.com/beagleboard/beaglebone-blue)
 * Probably outdated: [Device tree for robotics cape](https://github.com/StrawsonDesign/librobotcontrol/blob/master/device_tree/dtb-4.14-ti/am335x-boneblue.dts)
