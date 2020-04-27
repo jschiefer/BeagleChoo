@@ -18,46 +18,21 @@ The receiver remains active; communication from the CAN bus still gets passed
 to the `RXD` output pin.
 
 ## Pin configuration and device tree overlays
-Maybe it's just me, but I find the method of configuring the BeagleBone 
-device tree with slots, capes, overlays etc. hard to understand. Much of the
-documentation on the web seems to be outdated and referring to methods previously
-in use, but abandoned. As far as I can tell, as of this writing (April 2020),
-the state of the art appears to be the
-[U-Boot Partitioning Layout 2.0](https://elinux.org/Beagleboard:U-boot_partitioning_layout_2.0), 
-based on discussions in 2017, partially documented 
-[here](https://web.archive.org/web/20170618061856/https://wiki.linaro.org/Platform/DeviceTreeConsolidation).
-The hardware is configured by U-Boot, rather than the kernel. The above documents
-define the order in which directories are traversed, in order to find a valid
-device tree for the hardware.
+Some of my previous attempts at making this work were hampered by the fact that
+the BeagleBone hardware doesn't seem to be particularly well documented, and the 
+pin assignments for the CAN bus pins weren't implemented correctly. Luckily,
+as of the Linux kernel 4.16 and on, this problem has been fixed, so that the
+pins of the CAN bus connector on the BeagleBone Blue are correctly assigned.
+For reference, the device tree for the BeagleBone Blue used in the build that
+I am using is [this one](https://github.com/torvalds/linux/blob/v4.19/arch/arm/boot/dts/am335x-boneblue.dts) 
+(the latest version is [here](https://github.com/torvalds/linux/blob/master/arch/arm/boot/dts/am335x-boneblue.dts)).
 
-Device tree overlays are documented (hinted at) 
-[here](https://elinux.org/Beagleboard:BeagleBoneBlack_Debian#U-Boot_Overlays)
-and 
-[here](https://github.com/RobertCNelson/bb.org-overlays).
+![BeagleBone Blue pinout](https://elinux.org/images/thumb/d/dd/BeagleBoneBluePinDiagram.jpg/800px-BeagleBoneBluePinDiagram.jpg)
+* (https://www.marklin-users.net/forum/posts/t36089-Computer-interface-for-Marklin-Track-Box-and-mfx-programming)
+* Yellow is CAN-L, connected with Red on BBB
+* BL-GN is CAN-H, connected with Black on BBB
+* Connector is 4-wire JST-SH (1mm pitch) 
 
-[Device tree in the 4.19 kernel](https://github.com/torvalds/linux/blob/v4.19/arch/arm/boot/dts/am335x-boneblue.dts)
-[Latest version](https://github.com/torvalds/linux/blob/master/arch/arm/boot/dts/am335x-boneblue.dts)
-
-Let's try to make this work. I am starting from a standard Debian Buster "flasher" 
-image [distributed by the BeagleBone foundation](http://beagleboard.org/latest-images),
-called `AM3358 Debian 10.3 2020-04-06 4GB eMMC IoT Flasher`. I installed this 
-to the eMMC, and after booting, `uname -a` reports
-```
-Linux bbb 4.19.94-ti-r42 #1buster SMP PREEMPT Tue Mar 31 19:38:29 UTC 2020 armv7l GNU/Linux
-```
-The `/etc/debian_version` is 10.3.
-
-This U-Boot Partitioning Layout 2.0 is configured via `/boot/uEnv.txt`, so 
-let's take a look.
-
-BeagleBone Blue does not support the universal cape, 
-so comment out this line in  `/boot/uEnv.txt` as follows:
-```
-#enable_uboot_cape_universal=1
-```
-
-This used to be broken, but apparently a fix has been in the kernel since
-version 4.16.
 
 ## CAN network configuration
 

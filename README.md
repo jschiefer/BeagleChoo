@@ -91,6 +91,10 @@ Regrettably, [there is no System Reference Manual for the BeagleBone Blue](https
 * Probably outdated: [Device tree for robotics cape](https://github.com/StrawsonDesign/librobotcontrol/blob/master/device_tree/dtb-4.14-ti/am335x-boneblue.dts)
 * The Amp Hour Podcast [Episode #378: An Interview with Jason Kridner and Robert Nelson](https://theamphour.com/378-an-interview-with-jason-kridner-and-robert-nelson/)
 contains a lot of good information about BeagleBone.
+* Device tree overlays are documented (hinted at) 
+[here](https://elinux.org/Beagleboard:BeagleBoneBlack_Debian#U-Boot_Overlays)
+and 
+[here](https://github.com/RobertCNelson/bb.org-overlays).
 
 
 ### PRU Programming
