@@ -1,0 +1,11 @@
+[package]
+name = "bc"
+version = "0.1.0"
+authors = ["Jan Schiefer <jschiefer@users.noreply.github.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+socketcan="1.7.0"
+ncurses = "5.86.0"
