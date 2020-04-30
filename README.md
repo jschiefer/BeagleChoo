@@ -16,7 +16,12 @@ building electronic hardware. This project tries to explore some of these areas.
 ### Previous work
 
 From what I can determine, the original idea of building a controller out of a Märklin 60116 Digital Connector Box
-and some external software came from 
+and some external software came from Stefan Krauß [(Homepage in German)](http://www.skrauss.de/modellbahn/index.html),
+who proposed "[Gleisbox als Zentrale](http://www.skrauss.de/modellbahn/gbox.html)" and wrote the first 
+implementation [GBox2Eth](http://www.skrauss.de/modellbahn/gbox2eth_bin.html)
+in 2010. Since then, this idea has become the basis of a lot of good work,
+for example by [Michael Bernstein](http://mbernstein.de/modellbahn/can/index.htm) and
+[Gerhard Bertelsmann](http://lnxpps.de/bpi/) ([github](https://github.com/GBert/railroad)).
 
 
 ### Märklin 60116 Digital Connector Box

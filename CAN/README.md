@@ -21,8 +21,8 @@ to the `RXD` output pin.
 Some of my previous attempts at making this work were hampered by the fact that
 the BeagleBone hardware doesn't seem to be particularly well documented, and the 
 pin assignments for the CAN bus pins weren't implemented correctly. Luckily,
-as of the Linux kernel 4.16 and on, this problem has been fixed, so that the
-pins of the CAN bus connector on the BeagleBone Blue are correctly assigned.
+[as of the Linux kernel 4.16 and on, this problem has been fixed](https://github.com/torvalds/linux/commit/b4e05bce4fc089c42786afd129787c0beb891399#diff-066cf01db7178f2db39a1cbab0a276ec), 
+so that the pins of the CAN bus connector on the BeagleBone Blue are correctly assigned.
 For reference, the device tree for the BeagleBone Blue used in the build that
 I am using is [this one](https://github.com/torvalds/linux/blob/v4.19/arch/arm/boot/dts/am335x-boneblue.dts) 
 (the latest version is [here](https://github.com/torvalds/linux/blob/master/arch/arm/boot/dts/am335x-boneblue.dts)).
